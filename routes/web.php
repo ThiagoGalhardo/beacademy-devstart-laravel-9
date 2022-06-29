@@ -22,16 +22,13 @@ Route::get('/', function () {
 });
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::post('/user', [UserController::class, 'store'])->name('users.store');
 
+
+// Viacep API
 Route::get('viacep', [ViaCepController::class, 'index'])->name('viacep.index');
 Route::post('viacep', [ViaCepController::class, 'index'])->name('viacep.index.post');
 Route::get('viacep/{cep}', [ViaCepController::class, 'show'])->name('viacep.show');
 
-// Route::get('hello-world', function(){
-//     echo 'Hello World';
-// });
-
-// Route::get('/users/{name}', function($name){
-//     echo "Olá, $name";
-// });

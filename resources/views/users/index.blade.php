@@ -3,6 +3,9 @@
 @section('body')
 
 <h1 class="text-white">Listagem de usuários</h1>
+<div class="d-flex justify-content-end ">
+    <a href="{{route('users.create')}}" class="btn btn-success mb-3">Novo Usuário</a>
+</div>
 
 <table class="table table-dark table-striped">
     <thead>
@@ -18,10 +21,10 @@
     @foreach ($users as $user)
         <tr>
             <th scope="row">{{$user->id}}</th>
-            <td>{{$user->name}}</td>
+            <td >{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{ date('d/m/Y H:i', strtotime($user->created_at))}}</td>
-            <td><a href="{{route('users.show', $user->id)}}" class="btn btn-info btn-sm text-white fw-bold">Visualizar</a></td>
+            <td><a href="{{route('users.show', $user->id)}}" class="btn btn-info text-white fw-bold">Visualizar</a></td>
         </tr>
     @endforeach
     </tbody>
