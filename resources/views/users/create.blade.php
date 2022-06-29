@@ -10,15 +10,15 @@
     @csrf
   <div class="mb-3 col-sm-5">
     <label for="name" class="form-label text-white">Nome</label>
-    <input type="text" class="form-control" id="name" name="name">
+    <input type="text" class="form-control" id="name" name="name" required>
   </div>
   <div class="mb-3 col-sm-5">
     <label for="email" class="form-label text-white">Email</label>
-    <input type="email" class="form-control" id="email" name="email">
+    <input type="email" class="form-control" id="email" name="email" required>
   </div>
   <div class="mb-3 col-sm-5" >
     <label for="password" class="form-label text-white">Password</label>
-    <input type="password" class="form-control" id="password" name="password">
+    <input type="password" class="form-control" id="password" name="password" required>
   </div>
   <button type="submit" class="btn btn-primary px-5">Enviar</button>
 </form>

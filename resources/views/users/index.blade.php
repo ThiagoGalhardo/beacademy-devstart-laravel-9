@@ -24,7 +24,7 @@
             <td >{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{ date('d/m/Y H:i', strtotime($user->created_at))}}</td>
-            <td><a href="{{route('users.show', $user->id)}}" class="btn btn-info text-white fw-bold">Visualizar</a></td>
+            <td><a href="{{route('users.show', $user->id)}}" class="btn btn-info text-white btn-sm fw-bold">Visualizar</a></td>
         </tr>
     @endforeach
     </tbody>
