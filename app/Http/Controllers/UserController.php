@@ -21,8 +21,8 @@ class UserController extends Controller
 
    public function show($id)
    {
-    if (!$user = User::find($id))
-     return redirect()->route('users.index');
+        if (!$user = User::find($id))
+        return redirect()->route('users.index');
 //    $user = User::where('id', $id)->first();
     return view('users.show', compact('user'));
    }
@@ -66,8 +66,21 @@ class UserController extends Controller
             $data['password'] = bcrypt($request->password);
 
         $user->update($data);
-        return redirect()->route('users.show', $user->id);
+        return redirect()->route('users.show', $user->id)->with('success','Salvo com sucesso!');
+    }
 
+    public function destroy($id)
+    {
+        if (!$user = $this->model->find($id))
+            return redirect()->route('users.index');
+        $user->delete();
+        $this->notification('Sucesso!');
+        return redirect()->route('users.index');
+    }
+
+    public function notification()
+    {
+        return redirect()->route('users.notification')->with('success', 'Sucesso demais!!');
     }
 
 }
