@@ -18,8 +18,9 @@ use App\Http\Controllers\{
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   return redirect()->route('users.index');
 });
+
 Route::get('users/notification', [UserController::class, 'notification'])->name('users.notification');
 Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');

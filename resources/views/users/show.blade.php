@@ -36,4 +36,8 @@
     </tbody>
 </table>
 
+<div class="d-flex justify-content-center">
+   <a class="btn btn-primary px-4" href="{{route('users.index')}}">Voltar</a>
+</div>
+
 @endsection
