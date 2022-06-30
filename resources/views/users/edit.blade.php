@@ -24,7 +24,7 @@
             <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}">
         </div>
         <div class="mb-3 col-sm-5" >
-            <label for="password" class="form-label text-white">Password</label>
+            <label for="password" class="form-label text-white">Senha</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
         <button type="submit" class="btn btn-primary px-5">Atualizar</button>
