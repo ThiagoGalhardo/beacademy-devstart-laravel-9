@@ -14,6 +14,7 @@
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Email</th>
+            <th scope="col">Postagens</th>
             <th scope="col">Data de cadastro</th>
             <th scope="col">Ações</th>
         </tr>
@@ -31,15 +32,17 @@
             <th scope="row">{{$user->id}}</th>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
+            <td>
+                <a href=" {{route('posts.show', $user->id)}}" class="btn btn-outline-primary btn-sm fw-bold">Postagens: {{$user->posts->count()}}</a>
+
+            </td>
             <td>{{ date('d/m/Y H:i', strtotime($user->created_at))}}</td>
-            <td><a href=" {{route('users.show', $user->id)}}" class="btn btn-info text-white btn-sm fw-bold">Visualizar</a></td>
+            <td><a href=" {{route('users.show', $user->id)}}" class="btn btn-primary text-white btn-sm fw-bold">Visualizar</a></td>
         </tr>
         @endforeach
     </tbody>
 </table>
 <div class="justify-content-center pagination">
-
     {{$users->links('pagination::bootstrap-4')}}
-
 </div>
 @endsection
