@@ -35,11 +35,14 @@ class StoreUpdateUserFormRequest extends FormRequest
                 'required',
                 'min:6',
                 'max:15'
+            ],
+            'image' => [
+                'file',
+                'mimes:jpg,jpeg,png,webp'
             ]
         ];
 
-        if ($this->method() == 'PUT')
-        {
+        if ($this->method() == 'PUT') {
             $rules['password'] = [
                 'nullable',
                 'min:6',
@@ -47,17 +50,15 @@ class StoreUpdateUserFormRequest extends FormRequest
             ];
         }
 
-//        if ($this->method('PUT'))
-//        {
-//            $rules['password'] = [
-//                'nullable',
-//                'min:4',
-//                'max:14'
-//            ];
-//        }
+        //        if ($this->method('PUT'))
+        //        {
+        //            $rules['password'] = [
+        //                'nullable',
+        //                'min:4',
+        //                'max:14'
+        //            ];
+        //        }
 
         return $rules;
-
-
     }
 }

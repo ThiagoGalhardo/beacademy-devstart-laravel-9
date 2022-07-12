@@ -9,24 +9,24 @@
 
 <table class="table table-dark table-striped">
     <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Email</th>
-        <th scope="col">Data de cadastro</th>
-        <th scope="col">Ações</th>
-    </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Data de cadastro</th>
+            <th scope="col">Ações</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach ($users as $user)
+        @foreach ($users as $user)
         <tr>
             <th scope="row">{{$user->id}}</th>
-            <td >{{$user->name}}</td>
+            <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{ date('d/m/Y H:i', strtotime($user->created_at))}}</td>
             <td><a href="{{route('users.show', $user->id)}}" class="btn btn-info text-white btn-sm fw-bold">Visualizar</a></td>
         </tr>
-    @endforeach
+        @endforeach
     </tbody>
 </table>
 @endsection

@@ -15,36 +15,41 @@ class UserController extends Controller
     }
 
     public function index()
-   {
+    {
         $users = User::all();
-       return view('users.index', compact('users'));
-   }
+        return view('users.index', compact('users'));
+    }
 
-   public function show($id)
-   {
+    public function show($id)
+    {
         if (!$user = User::find($id))
-        return redirect()->route('users.index');
-//    $user = User::where('id', $id)->first();
-    return view('users.show', compact('user'));
-   }
+            return redirect()->route('users.index');
+        //    $user = User::where('id', $id)->first();
+        return view('users.show', compact('user'));
+    }
 
     public function create()
     {
-       return view('users.create');
+        return view('users.create');
     }
 
     public function store(StoreUpdateUserFormRequest $request)
     {
         // Forma alternativa de persistir o dados
-//        $user = New User;
-//        $user->name = $request->name;
-//        $user->email = $request->email;
-//        $user->password = bcrypt($request->password);
-//        $user->save();
-//        dd($request->all());
+        //        $user = New User;
+        //        $user->name = $request->name;
+        //        $user->email = $request->email;
+        //        $user->password = bcrypt($request->password);
+        //        $user->save();
+        //        dd($request->all());
 
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
+
+        $file = $request['image'];
+        $path = $file->store('profile', 'public');
+        $data['image'] = $path;
+
         $this->model->create($data);
 
         return redirect()->route('users.index');
@@ -67,7 +72,7 @@ class UserController extends Controller
             $data['password'] = bcrypt($request->password);
 
         $user->update($data);
-        return redirect()->route('users.show', $user->id)->with('success','Salvo com sucesso!');
+        return redirect()->route('users.show', $user->id)->with('success', 'Salvo com sucesso!');
     }
 
     public function destroy($id)
@@ -83,6 +88,4 @@ class UserController extends Controller
     {
         return redirect()->route('users.notification')->with('success', 'Excluído com sucesso!');
     }
-
 }
-
