@@ -33,6 +33,7 @@ class UserController extends Controller
             return redirect()->route('users.index');
         //    $user = User::where('id', $id)->first();
 
+        return view('users.show', compact('user'));
     }
 
     public function create()
@@ -93,6 +94,12 @@ class UserController extends Controller
         $this->notification('Sucesso!');
         return redirect()->route('users.index');
     }
+
+    public function admin()
+    {
+        return view('admin.index');
+    }
+
 
     public function notification()
     {
