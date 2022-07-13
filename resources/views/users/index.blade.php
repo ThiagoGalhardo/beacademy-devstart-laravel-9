@@ -2,9 +2,22 @@
 @section('title', 'Listagem de Usuários')
 @section('body')
 
+
 <h1 class="text-white">Listagem de usuários</h1>
-<div class="d-flex justify-content-end ">
-    <a href="{{route('users.create')}}" class="btn btn-success mb-3">Novo Usuário</a>
+
+<div class="row mt-3">
+
+    <div class="col mb-3">
+        <a href="{{route('users.create')}}" class="btn btn-success mb-3">Novo Usuário</a>
+    </div>
+
+    <div class="col mb-3">
+        <form class="d-flex mb-4" action="{{ route('users.index') }}" method="GET">
+            <input class="form-control me-2" type="search" name="search">
+            <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+        </form>
+    </div>
+
 </div>
 
 <table class="table table-dark table-striped">

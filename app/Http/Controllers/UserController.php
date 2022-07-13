@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateUserFormRequest;
-use App\Models\Team;
+
 
 class UserController extends Controller
 {
@@ -15,9 +15,15 @@ class UserController extends Controller
         $this->model = $user;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(5);
+        // dd($request->all());
+        // $users = User::paginate(5);
+
+
+        $users = $this->model->getUsers(
+            $request->search ?? ''
+        );
         return view('users.index', compact('users'));
     }
 
