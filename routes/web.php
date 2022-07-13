@@ -17,17 +17,22 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/users/{id}/posts', [PostController::class, 'show'])->name('posts.show');
+Route::middleware(['auth'])->group(function () {
 
-Route::get('users/notification', [UserController::class, 'notification'])->name('users.notification');
-Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show')->where('id', '[0-9]+');
-Route::post('/user', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+    Route::get('/users/{id}/posts', [PostController::class, 'show'])->name('posts.show');
+
+    Route::get('users/notification', [UserController::class, 'notification'])->name('users.notification');
+    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show')->where('id', '[0-9]+');
+    Route::post('/user', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+});
+
+
 
 // Viacep API
 Route::get('viacep', [ViaCepController::class, 'index'])->name('viacep.index');
