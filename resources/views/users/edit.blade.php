@@ -31,6 +31,13 @@
         <label for="image" class="form-label text-white">Selecione uma imagem</label>
         <input type="file" class="form-control control-md" id="image" name="image" />
     </div>
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="1" name="admin" id="is_admin">
+        <label class="form-check-label text-white" for="is_admin">
+            Administrador
+        </label>
+    </div>
+
     <button type="submit" class="btn btn-primary px-5">Atualizar</button>
 </form>
 

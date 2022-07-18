@@ -60,9 +60,11 @@ class UserController extends Controller
             $path = $file->store('profile', 'public');
             $data['image'] = $path;
         }
-
+        $data['is_admin'] = $request->admin ? 1 : 0;
         $this->model->create($data);
 
+
+        $this->notification('Usuário criado com sucesso!');
         return redirect()->route('users.index');
     }
 
@@ -70,6 +72,7 @@ class UserController extends Controller
     {
         if (!$user = $this->model->find($id))
             return redirect()->route('users.index');
+
         return view('users.edit', compact('user'));
     }
 
@@ -82,8 +85,10 @@ class UserController extends Controller
         if ($request->password)
             $data['password'] = bcrypt($request->password);
 
+        $data['is_admin'] = $request->admin ? 1 : 0;
         $user->update($data);
-        return redirect()->route('users.show', $user->id)->with('success', 'Salvo com sucesso!');
+        $this->notification('Atualizado com sucesso!');
+        return redirect()->route('users.show', $user->id);
     }
 
     public function destroy($id)
@@ -91,7 +96,7 @@ class UserController extends Controller
         if (!$user = $this->model->find($id))
             return redirect()->route('users.index');
         $user->delete();
-        $this->notification('Sucesso!');
+        $this->notification('Excluído com sucesso!');
         return redirect()->route('users.index');
     }
 
@@ -101,8 +106,8 @@ class UserController extends Controller
     }
 
 
-    public function notification()
+    public function notification($message)
     {
-        return redirect()->route('users.notification')->with('success', 'Excluído com sucesso!');
+        return redirect()->route('users.notification')->with('success', $message);
     }
 }
