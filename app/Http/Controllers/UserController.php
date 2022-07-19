@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\UserControllerException;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateUserFormRequest;
@@ -29,11 +30,19 @@ class UserController extends Controller
 
     public function show($id)
     {
-        if (!$user = User::find($id))
-            return redirect()->route('users.index');
+        $user = User::find($id);
+
+        if ($user) {
+            return view('users.show', compact('user'));
+        } else {
+            throw new UserControllerException("Usuário não encontrado", 1);
+        }
+
+        // if (!$user = User::find($id))
+        //     return redirect()->route('users.index');
         //    $user = User::where('id', $id)->first();
 
-        return view('users.show', compact('user'));
+        //return view('users.show', compact('user'));
     }
 
     public function create()
